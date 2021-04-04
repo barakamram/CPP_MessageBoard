@@ -38,4 +38,17 @@ TEST_CASE("Bad code"){
     board.post(300000, 200000, Direction::Vertical, " ");
     CHECK(board.read(120, 600, Direction::Vertical, 7) == "fa iled");
     CHECK(board.read(1,10, Direction::Horizontal, 5) == "error");
+    CHECK(board.read(3, 1, Direction::Vertical, 12) == "_0123456789");
+    board.post(1, 1, Direction::Horizontal, "oneone");
+    CHECK(board.read(3, 1, Direction::Vertical, 12) == "_k0123456789");
+    board.post(2, 2, Direction::Horizontal, "twotwo");
+    CHECK(board.read(3, 1, Direction::Vertical, 12) == "_kj123456789");
+    board.post(3, 3, Direction::Horizontal, "threethree");
+    CHECK(board.read(3, 1, Direction::Vertical, 12) == "_kjh12345678");
+    board.post(5, 5, Direction::Horizontal, "fivefive");
+    CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kjhnm345678");
+    board.post(6, 6, Direction::Horizontal, "sixsix");
+    CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kjhnmb45678");
+    CHECK(board.read(7, 0, Direction::Vertical, 10) == "___ba_am__");
+
 }

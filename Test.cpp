@@ -69,7 +69,6 @@ TEST_CASE("overriding"){
   	board.post(5, 5, Direction::Horizontal, "fffffffff");
   	CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kte1f345678");
   	board.post(6, 6, Direction::Horizontal, "sssssssss");
-  	CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kte1fs45678");  	
-  }
+  	CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kte1fs45678");  
 
 }

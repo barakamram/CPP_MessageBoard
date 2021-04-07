@@ -8,12 +8,12 @@ using namespace std;
 
 
 
-TEST_CASE("Good code"){
+TEST_CASE("post and read"){
     ariel::Board board;
     board.post(1, 1,Direction::Horizontal, "hello");
     CHECK(board.read(1, 1, Direction::Horizontal, 5) == "hello");
-    board.post(1, 2, Direction::Horizontal, "Hola");
-    CHECK(board.read(1, 2, Direction::Horizontal, 4) == "Hola");
+    board.post(1, 10, Direction::Horizontal, "Hola");
+    CHECK(board.read(1, 10, Direction::Horizontal, 4) == "Hola");
     CHECK(board.read(50, 100, Direction::Horizontal, 2) == "__");
     CHECK(board.read(50, 100, Direction::Vertical, 2) == "__");
     board.post(10, 20, Direction::Vertical, "hola");
@@ -25,10 +25,10 @@ TEST_CASE("Good code"){
     CHECK(board.read(10000, 10000, Direction::Vertical, 5) == "hola_");
     board.post(5000, 3500, Direction::Vertical, "Barak");
     CHECK(board.read(5000, 3500, Direction::Horizontal, 1) == "B");
-    CHECK(board.read(5000, 3500, Direction::Horizontal, 2) == "_a");
-    CHECK(board.read(5000, 3502, Direction::Horizontal, 1) == "r");
-    CHECK(board.read(5000, 3503, Direction::Horizontal, 2) == "a_");
-    CHECK(board.read(5000, 3503, Direction::Horizontal, 3) == "_k_");
+    CHECK(board.read(5000, 3499, Direction::Horizontal, 2) == "_a");
+    CHECK(board.read(5002, 3500, Direction::Horizontal, 1) == "r");
+    CHECK(board.read(5003, 3500, Direction::Horizontal, 2) == "a_");
+    CHECK(board.read(5004, 3499, Direction::Horizontal, 3) == "_k_");
 
 }
 
@@ -69,6 +69,6 @@ TEST_CASE("overriding"){
   	board.post(5, 5, Direction::Horizontal, "fffffffff");
   	CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kte1f345678");
   	board.post(6, 6, Direction::Horizontal, "sssssssss");
-  	CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kte1fs45678");  
+  	CHECK(board.read(6, 1, Direction::Vertical, 12) == "_kte1fs45678");
 
 }
